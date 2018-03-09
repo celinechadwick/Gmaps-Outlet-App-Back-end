@@ -1,0 +1,20 @@
+{
+    "models": [
+        {
+            "name": "User",
+            "fields": [
+                { "name": "name", "type": "String" },
+                { "name": "username", "type": "String", "unique": true },
+                { "name": "password", "type": "String" },
+                {
+                    "name": "Place",
+                    "type": "Json",
+                    "content": [
+                        { "name": "model", "type": "String" },
+                        { "name": "color", "type": "Number" }
+                    ]
+                }
+            ]
+        }
+    ]
+}
