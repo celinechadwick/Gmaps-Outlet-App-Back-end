@@ -5,7 +5,7 @@ let controller = {};
 
 controller.index = (req, res) => {
   Place
-  .findAll(req.params.user_id)
+  .findAll()
   .then((places) => {
     res
     .status(200).json(places);
@@ -16,9 +16,24 @@ controller.index = (req, res) => {
   });
 }
 
+controller.show = (req, res) => {
+    Place
+    .findById(req.params.id)
+    .then((place) => {
+        res
+        .status(200)
+        .json(owner);
+    })
+    .catch((err) => {
+        res
+        .status(400)
+        .json(err);
+    });
+}
+
 controller.create = (req, res) => {
   Place
-  .create(req.body.place, req.params.user_id)
+  .create(req.body.place)
   .then((place) => {
       res
       .status(201).json(place);
@@ -29,7 +44,7 @@ controller.create = (req, res) => {
 }
 controller.update = (req, res) => {
   Place
-  .update(req.body.place, req.params.user_id, req.params.id)
+  .update(req.body.place, req.params.id)
   .then(() => {
     res.sendStatus(200);
   })

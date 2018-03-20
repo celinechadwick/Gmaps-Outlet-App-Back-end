@@ -8,11 +8,20 @@ Place.findAll = () => {
     `);
 }
 
+Place.findById = (id) => {
+    return db.oneOrNone(`
+        SELECT * FROM markers
+        WHERE id = $1
+    `, [id]);
+}
+
+
+
 Place.create = (place) => {
   return db.one(`
     INSERT INTO markers
     (name, address, lat, lng, description, upvote, downvote)
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+    VALUES($1, $2, $3, $4, $5, $6, $7)
     RETURNING *
     `, [place.name, place.address, place.lat, place.lng, place.description, place.upvote, place.downvote]);
 }

@@ -3,6 +3,8 @@ const controller = require('./controller');
 const AuthService = require('../../services/auth');
 
 router.route('/')
+.all(AuthService.restrict)
+.get(controller.index)
 .post(controller.create);
 
 router.route('/login')
@@ -12,7 +14,7 @@ router.route("/:id")
     .all(AuthService.restrict)
     .get(controller.show)
     .put(controller.update)
-    .delete(controller.destroy);
+    // .delete(controller.destroy);
 
 
 

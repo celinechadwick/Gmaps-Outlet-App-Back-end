@@ -9,11 +9,11 @@ User.create = (user) => {
 
   return db.one(`
     INSERT INTO users
-    (username, email, password)
-    VALUES ($1, $2, $3)
+    (username, email, password, placelist)
+    VALUES ($1, $2, $3, $4)
     RETURNING
-    username, email, password
-    `, [user.username, user.email, user.password]);
+    username, email, password, placelist
+    `, [user.username, user.email, user.password, user.placelist]);
 }
 
 User.findByEmail = (user) => {
@@ -29,6 +29,8 @@ User.update = (user, id) => {
     username = $1
     email = $2
     password = $3
-    `, [user.username, user.email, user.password])
+    placelist = $4
+    WHERE id = $4
+    `, [user.username, user.email, user.password, user.placelist, id])
 }
 module.exports = User;
