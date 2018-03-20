@@ -16,7 +16,6 @@ Place.findById = (id) => {
 }
 
 
-
 Place.create = (place) => {
   return db.one(`
     INSERT INTO markers

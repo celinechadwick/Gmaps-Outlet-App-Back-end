@@ -3,15 +3,14 @@ const controller = require('./controller');
 const AuthService = require('../../services/auth');
 
 router.route('/')
-.all(AuthService.restrict)
-.get(controller.index)
+// .all(AuthService.restrict)
 .post(controller.create);
 
 router.route('/login')
 .post(controller.login);
 
 router.route("/:id")
-    .all(AuthService.restrict)
+    // .all(AuthService.restrict)
     .get(controller.show)
     .put(controller.update)
     // .delete(controller.destroy);

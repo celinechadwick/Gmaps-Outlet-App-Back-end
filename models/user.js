@@ -23,6 +23,13 @@ User.findByEmail = (user) => {
     `, [user.email]);
 }
 
+User.findById = (id) => {
+    return db.oneOrNone(`
+        SELECT * FROM users
+        WHERE id = $1
+    `, [id]);
+}
+
 User.update = (user, id) => {
   return db.none(`
     UPDATE users SELECT

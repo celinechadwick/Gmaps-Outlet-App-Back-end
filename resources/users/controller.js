@@ -19,7 +19,20 @@ controller.show = (req, res) => {
         .json(err);
     });
 }
-// 
+
+controller.update = (req, res) => {
+  User
+  .update(req.body.user, req.params.id)
+  .then(() => {
+    res.sendStatus(200);
+  })
+  .catch((err) => {
+    res
+    .status(400)
+    .json(err);
+  });
+}
+//
 // controller.destroy = (req, res) => {
 //     User
 //     .destroy(req.params.id)
